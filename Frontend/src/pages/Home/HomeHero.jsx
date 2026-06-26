@@ -7,10 +7,10 @@ const HomeHero = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-  src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=2000&auto=format&fit=crop"
-  alt="Truck"
-  className="h-full w-full object-cover"
-/>
+          src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=2000&auto=format&fit=crop"
+          alt="Truck"
+          className="h-full w-full object-cover"
+        />
 
         <div className="absolute inset-0 bg-black/20" />
 
@@ -31,16 +31,15 @@ const HomeHero = () => {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-300">
-            Buy and sell semi-trucks, day cabs, sleepers, dry vans,
-            reefers, and flatbeds with confidence. Financing,
-            warranty, and in-house repairs available.
+            Buy and sell semi-trucks, day cabs, sleepers, dry vans, reefers, and
+            flatbeds with confidence. Financing, warranty, and in-house repairs
+            available.
           </p>
 
           {/* Buttons */}
           <div className="mt-10 flex flex-wrap gap-4">
             <button className="group flex items-center gap-3 rounded-full bg-red-600 px-8 py-4 font-semibold text-white transition hover:bg-red-700">
               View Inventory
-
               <ArrowRight
                 size={18}
                 className="transition-transform duration-300 group-hover:translate-x-1"
@@ -57,30 +56,22 @@ const HomeHero = () => {
           <div className="mt-16 grid grid-cols-2 gap-6 md:grid-cols-4">
             <div>
               <h3 className="text-3xl font-bold text-white">50+</h3>
-              <p className="text-sm text-gray-400">
-                Inventory Listings
-              </p>
+              <p className="text-sm text-gray-400">Inventory Listings</p>
             </div>
 
             <div>
               <h3 className="text-3xl font-bold text-white">10+</h3>
-              <p className="text-sm text-gray-400">
-                Years Experience
-              </p>
+              <p className="text-sm text-gray-400">Years Experience</p>
             </div>
 
             <div>
               <h3 className="text-3xl font-bold text-white">100%</h3>
-              <p className="text-sm text-gray-400">
-                Transparent Deals
-              </p>
+              <p className="text-sm text-gray-400">Transparent Deals</p>
             </div>
 
             <div>
               <h3 className="text-3xl font-bold text-white">24/7</h3>
-              <p className="text-sm text-gray-400">
-                Customer Support
-              </p>
+              <p className="text-sm text-gray-400">Customer Support</p>
             </div>
           </div>
         </div>

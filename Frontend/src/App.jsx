@@ -11,23 +11,85 @@ import Inventory from "./pages/Inventory/Inventory";
 import TruckDetails from "./pages/Inventory/TruckDetails/TruckDetails";
 import Services from "./pages/Services/Services";
 
+import Login from "./Components/Login";
+
+// admin
+import Dashboard from "./pages/Admin/Dashboard";
+import ProtectedRoute from "./routes/ProtectedRoute";
+
+
 function App() {
   return (
-    <>
-      <Navbar />
+    <Routes>
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/inventory" element={<Inventory />} />
-        <Route path="/inventory/:id" element={<TruckDetails />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
 
-      <Footer />
-    </>
+      {/* Public Website */}
+      <Route
+        path="*"
+        element={
+          <>
+            <Navbar />
+
+            <Routes>
+
+              <Route path="/" element={<Home />} />
+
+              <Route 
+                path="/inventory" 
+                element={<Inventory />} 
+              />
+
+              <Route 
+                path="/inventory/:id" 
+                element={<TruckDetails />} 
+              />
+
+              <Route 
+                path="/services" 
+                element={<Services />} 
+              />
+
+              <Route 
+                path="/about" 
+                element={<About />} 
+              />
+
+              <Route 
+                path="/contact" 
+                element={<Contact />} 
+              />
+
+              <Route 
+                path="/login" 
+                element={<Login />} 
+              />
+
+            </Routes>
+
+
+            <Footer />
+          </>
+        }
+      />
+
+
+
+      {/* Protected Admin Dashboard */}
+      <Route
+        path="/admin/dashboard"
+        element={
+          <ProtectedRoute>
+
+            <Dashboard />
+
+          </ProtectedRoute>
+        }
+      />
+
+
+    </Routes>
   );
 }
+
 
 export default App;
