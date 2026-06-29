@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
@@ -10,86 +10,35 @@ import Contact from "./pages/Contact/Contact";
 import Inventory from "./pages/Inventory/Inventory";
 import TruckDetails from "./pages/Inventory/TruckDetails/TruckDetails";
 import Services from "./pages/Services/Services";
-
 import Login from "./Components/Login";
 
-// admin
-import Dashboard from "./pages/Admin/Dashboard";
-import ProtectedRoute from "./routes/ProtectedRoute";
-
+import AdminRoutes from "./routes/AdminRoutes";
 
 function App() {
+  const location = useLocation();
+
+  const isAdminRoute =
+    location.pathname.startsWith("/admin");
+
   return (
-    <Routes>
+    <>
+      {!isAdminRoute && <Navbar />}
 
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/inventory" element={<Inventory />} />
+        <Route path="/inventory/:id" element={<TruckDetails />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
 
-      {/* Public Website */}
-      <Route
-        path="*"
-        element={
-          <>
-            <Navbar />
+        {AdminRoutes()}
+      </Routes>
 
-            <Routes>
-
-              <Route path="/" element={<Home />} />
-
-              <Route 
-                path="/inventory" 
-                element={<Inventory />} 
-              />
-
-              <Route 
-                path="/inventory/:id" 
-                element={<TruckDetails />} 
-              />
-
-              <Route 
-                path="/services" 
-                element={<Services />} 
-              />
-
-              <Route 
-                path="/about" 
-                element={<About />} 
-              />
-
-              <Route 
-                path="/contact" 
-                element={<Contact />} 
-              />
-
-              <Route 
-                path="/login" 
-                element={<Login />} 
-              />
-
-            </Routes>
-
-
-            <Footer />
-          </>
-        }
-      />
-
-
-
-      {/* Protected Admin Dashboard */}
-      <Route
-        path="/admin/dashboard"
-        element={
-          <ProtectedRoute>
-
-            <Dashboard />
-
-          </ProtectedRoute>
-        }
-      />
-
-
-    </Routes>
+      {!isAdminRoute && <Footer />}
+    </>
   );
 }
-
 
 export default App;

@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowRight, Wrench, ShieldCheck } from "lucide-react";
+import ServiceImg from "../../assets/images.jpg"
 
 const ServicesHero = () => {
   return (
@@ -7,12 +8,12 @@ const ServicesHero = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1800&auto=format&fit=crop"
+          src={ServiceImg}
           alt="Truck Service"
           className="h-full w-full object-cover opacity-20"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-950/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/20 to-slate-950/10" />
       </div>
 
       {/* Background Glow */}

@@ -1,11 +1,14 @@
 import React from "react";
 import { ArrowRight, Calendar, Truck } from "lucide-react";
+import Img1 from "../../assets/images.jpg"
+import Img2 from "../../assets/T680-Truck.webp"
+import Img3 from "../../assets/freightlinercascadia2025trucktrailer01_02.jpg"
 
 const inventory = [
   {
     id: 1,
     image:
-      "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1200&auto=format&fit=crop",
+      Img1,
     year: "2024",
     make: "Freightliner",
     model: "Cascadia",
@@ -14,7 +17,7 @@ const inventory = [
   {
     id: 2,
     image:
-      "https://images.unsplash.com/photo-1626453665999-34deea5d2d80?w=1200&auto=format&fit=crop",
+      Img2,
     year: "2023",
     make: "Peterbilt",
     model: "579",
@@ -23,7 +26,7 @@ const inventory = [
   {
     id: 3,
     image:
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&auto=format&fit=crop",
+      Img3,
     year: "2025",
     make: "Kenworth",
     model: "T680",

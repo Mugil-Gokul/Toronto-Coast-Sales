@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowRight, Phone, ShieldCheck, Wrench, Truck } from "lucide-react";
+import HeroImg from "../../assets/images (2).jpg"
 
 const HomeHero = () => {
   return (

@@ -3,6 +3,8 @@ import ServicesHero from "./ServicesHero";
 import ServicesOverview from "./ServicesOverview";
 import ServiceSection from "./ServiceSection";
 import GetInTouch from "../../Components/GetInTouch";
+import Img1 from "../../assets/images (2).jpg"
+import Img2 from "../../assets/images (1).jpg"
 
 const services = [
   {
@@ -10,7 +12,7 @@ const services = [
     badge: "Truck Sales",
     title: "Commercial Trucks Built For Every Business",
     image:
-      "https://images.unsplash.com/photo-1501706362039-c6e80948f11f?w=1200&auto=format&fit=crop",
+      Img2,
     description:
       "Whether you're an owner-operator or managing a growing fleet, we offer a carefully selected inventory of commercial trucks from trusted manufacturers. Every vehicle is professionally inspected for quality, reliability, and performance before it reaches our lot.",
     features: [
@@ -36,7 +38,7 @@ const services = [
     badge: "Trailer Sales",
     title: "Premium Trailers For Every Industry",
     image:
-      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&auto=format&fit=crop",
+      Img1,
     description:
       "We provide a wide range of commercial trailers for logistics, construction, and transportation businesses. Our inventory includes dependable trailers built to maximize productivity and long-term value.",
     features: [

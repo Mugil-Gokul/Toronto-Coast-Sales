@@ -1,6 +1,6 @@
 import React from "react";
 import { ChevronRight } from "lucide-react";
-// import aboutHero from "../assets/about/about-hero.jpg";
+
 
 const AboutHero = () => {
   return (

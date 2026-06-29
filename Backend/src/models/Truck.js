@@ -79,6 +79,20 @@ const truckSchema = new mongoose.Schema(
       enum: ["available", "sold"],
       default: "available",
     },
+    featured: {
+      type: Boolean,
+      default: false,
+    },
+
+    stockNumber: {
+      type: String,
+    },
+
+    vin: {
+      type: String,
+      unique: true,
+      sparse: true,
+    },
   },
   {
     timestamps: true,

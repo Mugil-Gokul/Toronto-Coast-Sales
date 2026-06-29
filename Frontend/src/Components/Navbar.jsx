@@ -29,7 +29,7 @@ const Navbar = () => {
     <header
       className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "border-b border-white/10 bg-black/80 backdrop-blur-lg"
+          ? "border-b border-white/10 bg-black/50 backdrop-blur-lg"
           : "bg-transparent"
       }`}
     >
@@ -39,7 +39,7 @@ const Navbar = () => {
           <img
             src={logo}
             alt="Toronto Coast Truck Sales"
-            className="h-14 w-auto object-contain"
+            className="h-14 w-auto object-contain bg-white rounded-xl"
           />
         </Link>
 

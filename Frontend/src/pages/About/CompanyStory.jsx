@@ -6,7 +6,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-// import companyImage from "../assets/about/company-story.jpg";
+import companyImage  from "../../assets/TU506-14-1024x683.jpg";
 
 const features = [
   {
@@ -44,8 +44,8 @@ const CompanyStory = () => {
           <div className="relative">
             <div className="overflow-hidden rounded-3xl">
               <img
-                // src={companyImage}
-                src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1600&auto=format&fit=crop"
+                src={companyImage}
+                // src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1600&auto=format&fit=crop"
                 alt="Toronto Coast Truck Sales"
                 className="h-[650px] w-full object-cover"
               />
