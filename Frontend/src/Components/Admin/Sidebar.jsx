@@ -22,7 +22,7 @@ const Sidebar = () => {
       {/* Logo */}
 
       <div className="border-b border-slate-800 p-6">
-        <Link to="/admin/dashboard">
+        <Link to="/">
           <h1 className="text-2xl font-bold tracking-wide">Toronto Coast</h1>
 
           <p className="mt-1 text-sm text-slate-400">Truck Sales</p>

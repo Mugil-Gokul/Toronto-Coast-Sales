@@ -1,49 +1,64 @@
-import React, { useState } from "react";
 import { Search, SlidersHorizontal, RotateCcw } from "lucide-react";
 
-const InventoryFilters = () => {
-  const [filters, setFilters] = useState({
-    keyword: "",
-    category: "",
-    make: "",
-    year: "",
-    transmission: "",
-    sort: "newest",
-  });
-
+const InventoryFilters = ({
+  filters,
+  setFilters,
+  total,
+  trucks = [],
+}) => {
   const handleChange = (e) => {
-    setFilters({
-      ...filters,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setFilters((prev) => ({
+      ...prev,
+      [name]: value,
+      page: 1,
+    }));
   };
 
   const handleReset = () => {
     setFilters({
-      keyword: "",
-      category: "",
-      make: "",
-      year: "",
-      transmission: "",
+      search: "",
+      brand: "",
+      status: "",
       sort: "newest",
+      page: 1,
+      limit: 9,
     });
   };
 
+  // Generate unique brands dynamically
+  const brands = [...new Set(trucks.map((truck) => truck.brand))]
+    .filter(Boolean)
+    .sort();
+
   return (
-    <section className="relative -mt-16 z-20 pb-20">
+    <section className="relative z-20 -mt-16 pb-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-2xl">
-          {/* Heading */}
-          <div className="mb-8 flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
+
+          {/* Header */}
+
+          <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+
             <div>
+
               <div className="flex items-center gap-2 text-red-600">
                 <SlidersHorizontal size={18} />
-                <span className="font-semibold">Filter Inventory</span>
+
+                <span className="font-semibold">
+                  Filter Inventory
+                </span>
               </div>
 
               <h2 className="mt-2 text-3xl font-black text-slate-900">
                 Find Your Next Truck
               </h2>
+
+              <p className="mt-2 text-slate-500">
+                Browse our available truck inventory.
+              </p>
+
             </div>
 
             <button
@@ -51,19 +66,26 @@ const InventoryFilters = () => {
               className="flex items-center gap-2 rounded-xl border border-slate-300 px-5 py-3 font-semibold text-slate-700 transition hover:border-red-500 hover:text-red-600"
             >
               <RotateCcw size={18} />
+
               Reset Filters
             </button>
+
           </div>
 
           {/* Filters */}
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-6">
+
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+
             {/* Search */}
+
             <div className="xl:col-span-2">
+
               <label className="mb-2 block text-sm font-semibold text-slate-700">
                 Search
               </label>
 
               <div className="relative">
+
                 <Search
                   size={18}
                   className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
@@ -71,119 +93,130 @@ const InventoryFilters = () => {
 
                 <input
                   type="text"
-                  name="keyword"
-                  value={filters.keyword}
+                  name="search"
+                  value={filters.search}
                   onChange={handleChange}
-                  placeholder="Volvo, Freightliner..."
+                  placeholder="Search by title, brand or model..."
                   className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-red-600"
                 />
+
               </div>
+
             </div>
 
-            {/* Category */}
+            {/* Brand */}
+
             <div>
+
               <label className="mb-2 block text-sm font-semibold text-slate-700">
-                Category
+                Brand
               </label>
 
               <select
-                name="category"
-                value={filters.category}
+                name="brand"
+                value={filters.brand}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-red-600"
+                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-red-600"
               >
-                <option value="">All</option>
-                <option>Truck</option>
-                <option>Trailer</option>
+                <option value="">
+                  All Brands
+                </option>
+
+                {brands.map((brand) => (
+                  <option
+                    key={brand}
+                    value={brand}
+                  >
+                    {brand}
+                  </option>
+                ))}
+
               </select>
+
             </div>
 
-            {/* Make */}
+            {/* Status */}
+
             <div>
+
               <label className="mb-2 block text-sm font-semibold text-slate-700">
-                Make
+                Status
               </label>
 
               <select
-                name="make"
-                value={filters.make}
+                name="status"
+                value={filters.status}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-red-600"
+                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-red-600"
               >
-                <option value="">All</option>
-                <option>Volvo</option>
-                <option>Freightliner</option>
-                <option>Kenworth</option>
-                <option>Peterbilt</option>
-                <option>International</option>
+                <option value="">
+                  All Status
+                </option>
+
+                <option value="available">
+                  Available
+                </option>
+
+                <option value="sold">
+                  Sold
+                </option>
+
               </select>
+
             </div>
 
-            {/* Year */}
-            <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700">
-                Year
-              </label>
-
-              <select
-                name="year"
-                value={filters.year}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-red-600"
-              >
-                <option value="">Any</option>
-                <option>2025</option>
-                <option>2024</option>
-                <option>2023</option>
-                <option>2022</option>
-                <option>2021</option>
-              </select>
-            </div>
-
-            {/* Transmission */}
-            <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700">
-                Transmission
-              </label>
-
-              <select
-                name="transmission"
-                value={filters.transmission}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-red-600"
-              >
-                <option value="">Any</option>
-                <option>Automatic</option>
-                <option>Manual</option>
-              </select>
-            </div>
           </div>
 
-          {/* Bottom Row */}
-          <div className="mt-8 flex flex-col gap-4 border-t border-slate-200 pt-6 lg:flex-row lg:items-center lg:justify-between">
-            <p className="text-slate-600">
-              Showing <span className="font-bold">50</span> available vehicles
-            </p>
+          {/* Bottom */}
 
-            <div className="flex flex-col gap-4 sm:flex-row">
+          <div className="mt-8 flex flex-col gap-4 border-t border-slate-200 pt-6 lg:flex-row lg:items-center lg:justify-between">
+
+            <div>
+
+              <p className="text-slate-700">
+                Showing{" "}
+                <span className="font-bold text-red-600">
+                  {total}
+                </span>{" "}
+                trucks
+              </p>
+
+            </div>
+
+            <div className="flex items-center gap-3">
+
+              <span className="text-sm font-medium text-slate-600">
+                Sort By
+              </span>
+
               <select
                 name="sort"
                 value={filters.sort}
                 onChange={handleChange}
-                className="rounded-xl border border-slate-300 px-5 py-3 outline-none focus:border-red-600"
+                className="rounded-xl border border-slate-300 px-5 py-3 outline-none transition focus:border-red-600"
               >
-                <option value="newest">Newest First</option>
-                <option value="oldest">Oldest First</option>
-                <option value="lowPrice">Price: Low to High</option>
-                <option value="highPrice">Price: High to Low</option>
-                <option value="year">Newest Model Year</option>
+                <option value="newest">
+                  Newest First
+                </option>
+
+                <option value="oldest">
+                  Oldest First
+                </option>
+
+                <option value="price_low">
+                  Price: Low to High
+                </option>
+
+                <option value="price_high">
+                  Price: High to Low
+                </option>
+
               </select>
 
-              <button className="rounded-xl bg-red-600 px-8 py-3 font-semibold text-white transition hover:bg-red-700">
-                Apply Filters
-              </button>
             </div>
+
           </div>
+
         </div>
       </div>
     </section>
