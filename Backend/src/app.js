@@ -1,12 +1,16 @@
 const express = require("express");
 const cors = require("cors");
 
+const connectDB = require("./config/db");
+
 const authRoutes = require("./routes/auth.routes");
 const truckRoutes = require("./routes/truck.routes");
 const dashboardRoutes = require("./routes/dashboard.routes");
 const settingsRoutes = require("./routes/settings.routes");
 
+
 const app = express();
+
 
 app.use(
   cors({
@@ -18,7 +22,13 @@ app.use(
   })
 );
 
+
 app.use(express.json());
+
+
+// connect database for Vercel
+connectDB();
+
 
 app.use("/api/auth", authRoutes);
 
@@ -27,5 +37,6 @@ app.use("/api/trucks", truckRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 
 app.use("/api/settings", settingsRoutes);
+
 
 module.exports = app;
