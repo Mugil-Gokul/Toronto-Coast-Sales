@@ -7,7 +7,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 
-// import Logo from "../../assets/logo.png";
+import Logo from "../assets/TCT-Logo.png";
 
 const quickLinks = [
   { name: "Home", path: "/" },
@@ -21,27 +21,25 @@ const Footer = () => {
   return (
     <>
       {/* Floating Call Button */}
-
       <a
         href="tel:+14379903200"
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-red-600 text-white shadow-xl transition hover:scale-110"
+        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-red-600 text-white shadow-xl transition hover:scale-110"
       >
         <Phone size={22} />
       </a>
 
       <footer className="bg-slate-950 text-white">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr]">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-6 sm:py-20 lg:px-8">
+          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr]">
             {/* Company */}
-
             <div>
-              {/* <img src={Logo} alt="Logo" className="h-14" /> */}
+              <img
+                src={Logo}
+                alt="Logo"
+                className="h-14 rounded-xl bg-white"
+              />
 
-              <h2 className="text-3xl font-black">
-                Toronto Coast
-              </h2>
-
-              <p className="mt-6 max-w-md leading-8 text-slate-400">
+              <p className="mt-6 max-w-md text-sm leading-7 text-slate-400 sm:text-base sm:leading-8">
                 Toronto Coast Truck Sales provides premium commercial
                 trucks, trailer solutions, financing options,
                 professional repair services, and trusted after-sales
@@ -50,13 +48,12 @@ const Footer = () => {
             </div>
 
             {/* Navigation */}
-
             <div>
-              <h3 className="mb-6 text-xl font-bold">
+              <h3 className="mb-5 text-lg font-bold sm:mb-6 sm:text-xl">
                 Quick Links
               </h3>
 
-              <ul className="space-y-4">
+              <ul className="space-y-3 sm:space-y-4">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
                     <Link
@@ -76,23 +73,22 @@ const Footer = () => {
             </div>
 
             {/* Contact */}
-
             <div>
-              <h3 className="mb-6 text-xl font-bold">
+              <h3 className="mb-5 text-lg font-bold sm:mb-6 sm:text-xl">
                 Contact
               </h3>
 
-              <div className="space-y-6">
+              <div className="space-y-5 sm:space-y-6">
                 <a
                   href="tel:+14379903200"
                   className="flex items-start gap-4"
                 >
                   <Phone
-                    className="mt-1 text-red-500"
+                    className="mt-1 shrink-0 text-red-500"
                     size={20}
                   />
 
-                  <span className="text-slate-400">
+                  <span className="text-sm text-slate-400 sm:text-base">
                     +1 (437) 990-3200
                   </span>
                 </a>
@@ -102,22 +98,22 @@ const Footer = () => {
                   className="flex items-start gap-4"
                 >
                   <Mail
-                    className="mt-1 text-red-500"
+                    className="mt-1 shrink-0 text-red-500"
                     size={20}
                   />
 
-                  <span className="break-all text-slate-400">
+                  <span className="break-all text-sm text-slate-400 sm:text-base">
                     trucksales@torontocoast.com
                   </span>
                 </a>
 
                 <div className="flex items-start gap-4">
                   <MapPin
-                    className="mt-1 text-red-500"
+                    className="mt-1 shrink-0 text-red-500"
                     size={20}
                   />
 
-                  <span className="text-slate-400">
+                  <span className="text-sm text-slate-400 sm:text-base">
                     Toronto, Ontario, Canada
                   </span>
                 </div>
@@ -127,31 +123,30 @@ const Footer = () => {
         </div>
 
         {/* Bottom */}
-
         <div className="border-t border-white/10">
-          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-sm text-slate-400 md:flex-row lg:px-8">
+          <div className="mx-auto flex max-w-7xl flex-col items-center gap-5 px-5 py-6 text-center text-sm text-slate-400 sm:px-6 md:flex-row md:justify-between md:text-left lg:px-8">
             <p>
               © {new Date().getFullYear()} Toronto Coast Truck Sales.
               All rights reserved.
             </p>
 
-            <div className="flex gap-6">
+            <div className="flex flex-wrap justify-center gap-5 md:justify-start">
               <Link
                 // to="/privacy-policy"
-                className="hover:text-red-500"
+                className="transition hover:text-red-500"
               >
                 Privacy Policy
               </Link>
 
               <Link
                 // to="/terms-and-conditions"
-                className="hover:text-red-500"
+                className="transition hover:text-red-500"
               >
                 Terms & Conditions
               </Link>
             </div>
 
-            <p>
+            <p className="text-center md:text-right">
               Designed & Developed by{" "}
               <span className="font-semibold text-white">
                 Mugil Technologies Ltd

@@ -24,56 +24,56 @@ const testimonials = [
 
 const HomeTestimonials = () => {
   return (
-    <section className="bg-slate-950 py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="bg-slate-950 py-16 sm:py-20">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
           <span className="inline-block rounded-full bg-red-600/10 px-4 py-2 text-sm font-semibold text-red-500">
             Customer Testimonials
           </span>
 
-          <h2 className="mt-5 text-4xl font-black text-white md:text-5xl">
+          <h2 className="mt-5 text-3xl font-black leading-tight text-white sm:text-4xl md:text-5xl">
             Trusted By Truck Owners
             <span className="block text-red-600">
               Across The Industry
             </span>
           </h2>
 
-          <p className="mt-6 text-lg text-slate-400">
+          <p className="mt-5 text-base leading-relaxed text-slate-400 sm:mt-6 sm:text-lg">
             We take pride in helping owner operators, small businesses,
             and fleets find reliable trucks and trailers with confidence.
           </p>
         </div>
 
         {/* Cards */}
-        <div className="mt-16 grid gap-8 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:mt-16 sm:gap-8 lg:grid-cols-3">
           {testimonials.map((item, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2"
+              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 sm:p-8"
             >
               <Quote
-                className="absolute right-6 top-6 text-red-600/20"
-                size={60}
+                className="absolute right-5 top-5 text-red-600/20 sm:right-6 sm:top-6"
+                size={48}
               />
 
               {/* Stars */}
-              <div className="mb-6 flex gap-1">
+              <div className="mb-5 flex gap-1 sm:mb-6">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    size={18}
-                    className="fill-red-500 text-red-500"
+                    size={16}
+                    className="fill-red-500 text-red-500 sm:h-[18px] sm:w-[18px]"
                   />
                 ))}
               </div>
 
-              <p className="relative z-10 text-slate-300 leading-relaxed">
+              <p className="relative z-10 text-sm leading-relaxed text-slate-300 sm:text-base">
                 "{item.review}"
               </p>
 
-              <div className="mt-8 border-t border-white/10 pt-6">
-                <h4 className="font-bold text-white">
+              <div className="mt-6 border-t border-white/10 pt-5 sm:mt-8 sm:pt-6">
+                <h4 className="text-lg font-bold text-white">
                   {item.name}
                 </h4>
 
@@ -84,7 +84,6 @@ const HomeTestimonials = () => {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

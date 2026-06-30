@@ -17,26 +17,30 @@ import AdminRoutes from "./routes/AdminRoutes";
 function App() {
   const location = useLocation();
 
-  const isAdminRoute =
-    location.pathname.startsWith("/admin");
+  const hideLayout =
+    location.pathname.startsWith("/admin") ||
+    location.pathname === "/login";
 
   return (
     <>
-      {!isAdminRoute && <Navbar />}
+      {!hideLayout && <Navbar />}
 
       <Routes>
         <Route path="/" element={<Home />} />
+
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/inventory/:id" element={<TruckDetails />} />
+
         <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+
         <Route path="/login" element={<Login />} />
 
         {AdminRoutes()}
       </Routes>
 
-      {!isAdminRoute && <Footer />}
+      {!hideLayout && <Footer />}
     </>
   );
 }

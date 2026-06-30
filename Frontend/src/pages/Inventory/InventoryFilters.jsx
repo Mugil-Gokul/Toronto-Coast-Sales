@@ -33,16 +33,15 @@ const InventoryFilters = ({
     .sort();
 
   return (
-    <section className="relative z-20 -mt-16 pb-20">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-2xl">
+    <section className="relative z-20 -mt-12 sm:-mt-16 pb-16 sm:pb-20">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-2xl sm:p-8">
 
           {/* Header */}
 
-          <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
 
             <div>
-
               <div className="flex items-center gap-2 text-red-600">
                 <SlidersHorizontal size={18} />
 
@@ -51,22 +50,20 @@ const InventoryFilters = ({
                 </span>
               </div>
 
-              <h2 className="mt-2 text-3xl font-black text-slate-900">
+              <h2 className="mt-2 text-2xl font-black text-slate-900 sm:text-3xl">
                 Find Your Next Truck
               </h2>
 
-              <p className="mt-2 text-slate-500">
+              <p className="mt-2 text-sm text-slate-500 sm:text-base">
                 Browse our available truck inventory.
               </p>
-
             </div>
 
             <button
               onClick={handleReset}
-              className="flex items-center gap-2 rounded-xl border border-slate-300 px-5 py-3 font-semibold text-slate-700 transition hover:border-red-500 hover:text-red-600"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-300 px-5 py-3 font-semibold text-slate-700 transition hover:border-red-500 hover:text-red-600 sm:w-auto"
             >
               <RotateCcw size={18} />
-
               Reset Filters
             </button>
 
@@ -97,7 +94,7 @@ const InventoryFilters = ({
                   value={filters.search}
                   onChange={handleChange}
                   placeholder="Search by title, brand or model..."
-                  className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-red-600"
+                  className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 text-sm outline-none transition focus:border-red-600 sm:text-base"
                 />
 
               </div>
@@ -116,7 +113,7 @@ const InventoryFilters = ({
                 name="brand"
                 value={filters.brand}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-red-600"
+                className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-red-600 sm:text-base"
               >
                 <option value="">
                   All Brands
@@ -130,7 +127,6 @@ const InventoryFilters = ({
                     {brand}
                   </option>
                 ))}
-
               </select>
 
             </div>
@@ -147,7 +143,7 @@ const InventoryFilters = ({
                 name="status"
                 value={filters.status}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-red-600"
+                className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-red-600 sm:text-base"
               >
                 <option value="">
                   All Status
@@ -169,22 +165,17 @@ const InventoryFilters = ({
 
           {/* Bottom */}
 
-          <div className="mt-8 flex flex-col gap-4 border-t border-slate-200 pt-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="mt-8 flex flex-col gap-5 border-t border-slate-200 pt-6 lg:flex-row lg:items-center lg:justify-between">
 
-            <div>
+            <p className="text-sm text-slate-700 sm:text-base">
+              Showing{" "}
+              <span className="font-bold text-red-600">
+                {total}
+              </span>{" "}
+              trucks
+            </p>
 
-              <p className="text-slate-700">
-                Showing{" "}
-                <span className="font-bold text-red-600">
-                  {total}
-                </span>{" "}
-                trucks
-              </p>
-
-            </div>
-
-            <div className="flex items-center gap-3">
-
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
               <span className="text-sm font-medium text-slate-600">
                 Sort By
               </span>
@@ -193,7 +184,7 @@ const InventoryFilters = ({
                 name="sort"
                 value={filters.sort}
                 onChange={handleChange}
-                className="rounded-xl border border-slate-300 px-5 py-3 outline-none transition focus:border-red-600"
+                className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-red-600 sm:w-auto sm:px-5 sm:text-base"
               >
                 <option value="newest">
                   Newest First

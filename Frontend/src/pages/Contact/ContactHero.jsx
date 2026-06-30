@@ -4,7 +4,7 @@ import { ChevronRight, PhoneCall } from "lucide-react";
 
 const ContactHero = () => {
   return (
-    <section className="relative flex h-[100vh] items-center overflow-hidden bg-black pt-20">
+    <section className="relative flex min-h-[85vh] items-center overflow-hidden bg-black pt-24 sm:min-h-[90vh] lg:h-screen lg:pt-20">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
@@ -22,9 +22,9 @@ const ContactHero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
-        <div className="mb-6 flex items-center gap-2 text-sm text-slate-300">
+        <div className="mb-5 flex flex-wrap items-center gap-2 text-xs text-slate-300 sm:mb-6 sm:text-sm">
           <span>Home</span>
 
           <ChevronRight size={16} />
@@ -36,19 +36,19 @@ const ContactHero = () => {
 
         {/* Heading */}
         <div className="max-w-4xl">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm font-medium text-red-400">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2 text-xs font-medium text-red-400 sm:text-sm">
             <PhoneCall size={16} />
             We're Here to Help
           </div>
 
-          <h1 className="text-5xl font-black leading-tight text-white md:text-7xl">
+          <h1 className="text-4xl font-black leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
             Get In
             <span className="block text-red-600">
               Touch
             </span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
+          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:mt-6 sm:text-lg sm:leading-8">
             Whether you're looking for a quality truck, financing
             options, trailer sales, or repair services, our team is
             ready to answer your questions and help you find the right
@@ -58,7 +58,7 @@ const ContactHero = () => {
       </div>
 
       {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-white to-transparent" />
+      <div className="absolute bottom-0 left-0 h-10 w-full bg-gradient-to-t from-white to-transparent sm:h-24" />
     </section>
   );
 };

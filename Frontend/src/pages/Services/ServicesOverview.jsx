@@ -43,7 +43,7 @@ const services = [
 
 const ServicesOverview = () => {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white py-14">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Heading */}
         <div className="mb-16 text-center">
@@ -86,14 +86,14 @@ const ServicesOverview = () => {
                   {service.description}
                 </p>
 
-                <button className="group mt-8 inline-flex items-center gap-2 font-semibold text-red-600 transition hover:gap-3">
+                {/* <button className="group mt-8 inline-flex items-center gap-2 font-semibold text-red-600 transition hover:gap-3">
                   Learn More
 
                   <ArrowRight
                     size={18}
                     className="transition-transform duration-300 group-hover:translate-x-1"
                   />
-                </button>
+                </button> */}
               </div>
             );
           })}

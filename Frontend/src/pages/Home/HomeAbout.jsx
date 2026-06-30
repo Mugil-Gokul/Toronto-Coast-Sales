@@ -35,7 +35,7 @@ const features = [
 
 const HomeAbout = () => {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white py-14">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
           {/* Left Content */}

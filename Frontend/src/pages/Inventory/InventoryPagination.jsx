@@ -40,7 +40,6 @@ const InventoryPagination = ({
   const renderPages = () => {
     const pages = [];
 
-    // Small page counts
     if (totalPages <= 7) {
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i);
@@ -49,17 +48,13 @@ const InventoryPagination = ({
       return pages;
     }
 
-    // First page
     pages.push(1);
 
-    // Left dots
     if (currentPage > 3) {
       pages.push("left-dot");
     }
 
-    // Middle pages
     const startPage = Math.max(2, currentPage - 1);
-
     const endPage = Math.min(
       totalPages - 1,
       currentPage + 1
@@ -69,24 +64,22 @@ const InventoryPagination = ({
       pages.push(i);
     }
 
-    // Right dots
     if (currentPage < totalPages - 2) {
       pages.push("right-dot");
     }
 
-    // Last page
     pages.push(totalPages);
 
     return pages;
   };
 
   return (
-    <section className="bg-white pb-24">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 lg:flex-row">
+    <section className="bg-white pb-16 sm:pb-24">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 sm:px-6 lg:flex-row lg:px-8">
 
         {/* Results */}
 
-        <p className="text-slate-600">
+        <p className="text-center text-sm text-slate-600 sm:text-base lg:text-left">
           Showing{" "}
           <span className="font-bold text-slate-900">
             {start}-{end}
@@ -100,67 +93,62 @@ const InventoryPagination = ({
 
         {/* Pagination */}
 
-        <div className="flex items-center gap-2">
+        <div className="w-full overflow-x-auto lg:w-auto">
+          <div className="flex min-w-max items-center justify-center gap-2 pb-1">
 
-          {/* Previous */}
+            {/* Previous */}
 
-          <button
-            onClick={() =>
-              changePage(currentPage - 1)
-            }
-            disabled={currentPage === 1}
-            className="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-300 transition hover:border-red-600 hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            <ChevronLeft size={20} />
-          </button>
+            <button
+              onClick={() => changePage(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-300 transition hover:border-red-600 hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-40 sm:h-12 sm:w-12"
+            >
+              <ChevronLeft size={20} />
+            </button>
 
-          {renderPages().map((page, index) => {
-            if (
-              page === "left-dot" ||
-              page === "right-dot"
-            ) {
+            {renderPages().map((page, index) => {
+              if (
+                page === "left-dot" ||
+                page === "right-dot"
+              ) {
+                return (
+                  <span
+                    key={index}
+                    className="px-2 text-slate-500"
+                  >
+                    ...
+                  </span>
+                );
+              }
+
               return (
-                <span
-                  key={index}
-                  className="px-2 text-slate-500"
+                <button
+                  key={page}
+                  onClick={() => changePage(page)}
+                  className={`h-10 w-10 shrink-0 rounded-xl font-semibold transition sm:h-12 sm:w-12 ${
+                    currentPage === page
+                      ? "bg-red-600 text-white shadow-lg"
+                      : "border border-slate-300 text-slate-700 hover:border-red-600 hover:text-red-600"
+                  }`}
                 >
-                  ...
-                </span>
+                  {page}
+                </button>
               );
-            }
+            })}
 
-            return (
-              <button
-                key={page}
-                onClick={() =>
-                  changePage(page)
-                }
-                className={`h-12 w-12 rounded-xl font-semibold transition ${
-                  currentPage === page
-                    ? "bg-red-600 text-white shadow-lg"
-                    : "border border-slate-300 text-slate-700 hover:border-red-600 hover:text-red-600"
-                }`}
-              >
-                {page}
-              </button>
-            );
-          })}
+            {/* Next */}
 
-          {/* Next */}
+            <button
+              onClick={() => changePage(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-300 transition hover:border-red-600 hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-40 sm:h-12 sm:w-12"
+            >
+              <ChevronRight size={20} />
+            </button>
 
-          <button
-            onClick={() =>
-              changePage(currentPage + 1)
-            }
-            disabled={
-              currentPage === totalPages
-            }
-            className="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-300 transition hover:border-red-600 hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            <ChevronRight size={20} />
-          </button>
-
+          </div>
         </div>
+
       </div>
     </section>
   );
