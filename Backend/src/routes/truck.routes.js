@@ -28,14 +28,12 @@ deleteTruck
 
 
 // Get all trucks
-router.get("/", 
-  // protect, 
-  getTrucks);
+router.get("/", protect, getTrucks);
 
 // Get single truck
 router.get(
   "/:id",
-  // protect,
+  protect,
   validateObjectId,
   getSingleTruck
 );
