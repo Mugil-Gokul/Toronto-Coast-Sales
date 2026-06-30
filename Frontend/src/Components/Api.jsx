@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const Api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://toronto-coast-sales-9ofv.vercel.app/",
+  // http://localhost:5000/api
+  
 });
 
 // Automatically attach JWT token
