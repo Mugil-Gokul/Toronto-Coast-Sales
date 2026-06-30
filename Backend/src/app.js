@@ -8,7 +8,15 @@ const settingsRoutes = require("./routes/settings.routes");
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://toronto-coast-sales.vercel.app/",
+    ],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
