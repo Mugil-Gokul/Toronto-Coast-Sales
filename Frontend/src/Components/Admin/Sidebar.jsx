@@ -18,25 +18,102 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="flex h-screen sticky top-0 w-72 flex-col border-r border-slate-800 bg-slate-900 text-white">
+    <aside
+      className="
+        sticky
+        top-0
+        flex
+        h-screen
+        w-20
+        flex-col
+        bg-slate-900
+        text-white
+        border-r
+        border-slate-800
+        transition-all
+        duration-300
+        lg:w-72
+      "
+    >
       {/* Logo */}
 
-      <div className="border-b border-slate-800 p-6">
-        <Link to="/">
-          <h1 className="text-2xl font-bold tracking-wide">Toronto Coast</h1>
+      <div
+        className="
+          flex
+          h-24
+          items-center
+          justify-center
+          border-b
+          border-slate-800
+          lg:block
+          lg:p-6
+        "
+      >
+        <Link to="/" className="group">
+          <h1
+            className="
+              hidden
+              text-2xl
+              font-bold
+              tracking-wide
+              lg:block
+            "
+          >
+            Toronto Coast
+          </h1>
 
-          <p className="mt-1 text-sm text-slate-400">Truck Sales</p>
+          <p
+            className="
+              hidden
+              mt-1
+              text-sm
+              text-slate-400
+              lg:block
+            "
+          >
+            Truck Sales
+          </p>
+
+          {/* Mobile Logo */}
+
+          <div
+            className="
+              flex
+              h-10
+              w-10
+              items-center
+              justify-center
+              rounded-xl
+              bg-orange-500
+              font-bold
+              lg:hidden
+            "
+          >
+            T
+          </div>
         </Link>
       </div>
 
-      {/* Main Navigation */}
+      {/* Navigation */}
 
-      <div className="flex-1 overflow-y-auto px-4 py-6">
-        <p className="mb-3 px-2 text-xs font-semibold uppercase tracking-widest text-slate-500">
+      <div className="flex-1 overflow-y-auto px-3 py-6 lg:px-4">
+        <p
+          className="
+          mb-4
+          hidden
+          px-2
+          text-xs
+          font-semibold
+          uppercase
+          tracking-widest
+          text-slate-500
+          lg:block
+          "
+        >
           Main Menu
         </p>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <SidebarItem
             to="/admin/dashboard"
             icon={LayoutDashboard}
@@ -56,28 +133,53 @@ const Sidebar = () => {
           />
         </div>
 
-        {/* Divider */}
+        <div className="my-8 border-t border-slate-800" />
 
-        <div className="my-8 border-t border-slate-800"></div>
-
-        <p className="mb-3 px-2 text-xs font-semibold uppercase tracking-widest text-slate-500">
+        <p
+          className="
+          mb-4
+          hidden
+          px-2
+          text-xs
+          font-semibold
+          uppercase
+          tracking-widest
+          text-slate-500
+          lg:block
+          "
+        >
           System
         </p>
 
-        <div className="space-y-2">
-          <SidebarItem to="/admin/settings" icon={Settings} label="Settings" />
-        </div>
+        <SidebarItem to="/admin/settings" icon={Settings} label="Settings" />
       </div>
 
-      {/* Footer */}
+      {/* Logout */}
 
-      <div className="border-t border-slate-800 p-4">
+      <div className="border-t border-slate-800 p-3">
         <button
           onClick={handleLogout}
-          className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-red-400 transition hover:bg-red-500 hover:text-white"
+          title="Logout"
+          className="
+            flex
+            w-full
+            items-center
+            justify-center
+            gap-3
+            rounded-xl
+            px-3
+            py-3
+            text-red-400
+            transition
+            hover:bg-red-500
+            hover:text-white
+            lg:justify-start
+            lg:px-4
+          "
         >
           <LogOut size={20} />
-          Logout
+
+          <span className="hidden lg:block">Logout</span>
         </button>
       </div>
     </aside>

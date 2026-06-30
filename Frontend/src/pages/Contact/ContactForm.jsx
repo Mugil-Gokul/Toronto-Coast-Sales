@@ -20,17 +20,36 @@ const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    const subject = `Truck Inquiry from ${formData.name}`;
 
-    // Later
-    // axios.post("/api/contact", formData)
+    const body = `
+Name: ${formData.name}
+
+Email: ${formData.email}
+
+Phone: ${formData.phone}
+
+Interested In:
+${formData.service}
+
+
+Message:
+
+${formData.message}
+    `;
+
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=trucksales@torontocoast.com&su=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+
+    window.open(gmailUrl, "_blank");
   };
 
   return (
     <section className="bg-slate-950 py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          {/* Left Side */}
+          {/* LEFT CONTENT */}
 
           <div>
             <span className="inline-block rounded-full bg-red-600/10 px-4 py-2 text-xs font-semibold text-red-500 sm:text-sm">
@@ -44,31 +63,29 @@ const ContactForm = () => {
 
             <p className="mt-5 text-base leading-7 text-slate-400 sm:mt-6 sm:text-lg sm:leading-8">
               Have questions about our inventory, financing options, trailer
-              sales, or repair services? Fill out the form and one of our
-              specialists will get back to you as soon as possible.
+              sales, or repair services? Fill out the form and our team will get
+              back to you.
             </p>
 
-            {/* Features */}
-
             <div className="mt-8 space-y-4 sm:mt-10 sm:space-y-5">
-              <div className="flex items-center gap-3 sm:gap-4">
-                <div className="h-3 w-3 flex-shrink-0 rounded-full bg-red-600" />
+              <div className="flex items-center gap-3">
+                <div className="h-3 w-3 rounded-full bg-red-600" />
 
                 <p className="text-sm text-slate-300 sm:text-base">
                   Quick Response from Our Team
                 </p>
               </div>
 
-              <div className="flex items-center gap-3 sm:gap-4">
-                <div className="h-3 w-3 flex-shrink-0 rounded-full bg-red-600" />
+              <div className="flex items-center gap-3">
+                <div className="h-3 w-3 rounded-full bg-red-600" />
 
                 <p className="text-sm text-slate-300 sm:text-base">
                   Financing Assistance Available
                 </p>
               </div>
 
-              <div className="flex items-center gap-3 sm:gap-4">
-                <div className="h-3 w-3 flex-shrink-0 rounded-full bg-red-600" />
+              <div className="flex items-center gap-3">
+                <div className="h-3 w-3 rounded-full bg-red-600" />
 
                 <p className="text-sm text-slate-300 sm:text-base">
                   Truck & Trailer Experts
@@ -77,12 +94,12 @@ const ContactForm = () => {
             </div>
           </div>
 
-          {/* Form */}
+          {/* FORM */}
 
           <div className="rounded-3xl border border-white/10 bg-white p-5 shadow-2xl sm:p-8 lg:p-10">
             <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
               <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700 sm:text-base">
+                <label className="mb-2 block text-sm font-medium text-slate-700">
                   Full Name
                 </label>
 
@@ -92,14 +109,14 @@ const ContactForm = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="John Doe"
-                  className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-red-600 sm:px-5 sm:py-4 sm:text-base"
                   required
+                  className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-red-600"
                 />
               </div>
 
               <div className="grid gap-5 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-slate-700 sm:text-base">
+                  <label className="mb-2 block text-sm font-medium text-slate-700">
                     Email
                   </label>
 
@@ -109,13 +126,13 @@ const ContactForm = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="john@email.com"
-                    className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-red-600 sm:px-5 sm:py-4 sm:text-base"
                     required
+                    className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-red-600"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-slate-700 sm:text-base">
+                  <label className="mb-2 block text-sm font-medium text-slate-700">
                     Phone
                   </label>
 
@@ -125,14 +142,14 @@ const ContactForm = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+1 (123) 456-7890"
-                    className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-red-600 sm:px-5 sm:py-4 sm:text-base"
                     required
+                    className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-red-600"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700 sm:text-base">
+                <label className="mb-2 block text-sm font-medium text-slate-700">
                   Interested In
                 </label>
 
@@ -140,8 +157,8 @@ const ContactForm = () => {
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-red-600 sm:px-5 sm:py-4 sm:text-base"
                   required
+                  className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-red-600"
                 >
                   <option value="">Select a Service</option>
 
@@ -158,24 +175,24 @@ const ContactForm = () => {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700 sm:text-base">
+                <label className="mb-2 block text-sm font-medium text-slate-700">
                   Message
                 </label>
 
                 <textarea
-                  rows={5}
+                  rows="5"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell us how we can help..."
-                  className="w-full resize-none rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-red-600 sm:px-5 sm:py-4 sm:text-base"
                   required
+                  className="w-full resize-none rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-red-600"
                 />
               </div>
 
               <button
                 type="submit"
-                className="flex w-full items-center justify-center gap-3 rounded-xl bg-red-600 px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-red-700 sm:py-4 sm:text-base"
+                className="flex w-full items-center justify-center gap-3 rounded-xl bg-red-600 px-6 py-3.5 font-semibold text-white transition hover:bg-red-700"
               >
                 <Send size={18} />
                 Send Message

@@ -19,7 +19,8 @@ const StatCard = ({
       border
       border-slate-100
       bg-white
-      p-6
+      p-5
+      sm:p-6
       shadow-sm
       transition-all
       duration-300
@@ -27,18 +28,19 @@ const StatCard = ({
       hover:shadow-xl
       "
     >
-      {/* Decorative background */}
+      {/* Background Decoration */}
 
       <div
         className="
         absolute
-        -right-8
-        -top-8
-        h-32
-        w-32
+        -right-10
+        -top-10
+        h-36
+        w-36
         rounded-full
         bg-slate-50
-        transition
+        transition-all
+        duration-500
         group-hover:scale-150
         "
       />
@@ -51,7 +53,7 @@ const StatCard = ({
         justify-between
         "
       >
-        {/* Text */}
+        {/* Content */}
 
         <div>
           <p
@@ -67,7 +69,8 @@ const StatCard = ({
           <h2
             className="
             mt-3
-            text-4xl
+            text-3xl
+            sm:text-4xl
             font-extrabold
             tracking-tight
             text-slate-900
@@ -79,36 +82,20 @@ const StatCard = ({
           {change && (
             <div
               className={`
-                mt-4
-                flex
-                items-center
-                gap-1
-                text-sm
-                font-semibold
-                ${changeColor}
-                `}
+              mt-4
+              flex
+              items-center
+              gap-1
+              text-sm
+              font-semibold
+              ${changeColor}
+              `}
             >
               <ArrowUpRight size={16} />
 
               {change}
             </div>
           )}
-        </div>
-
-        {/* Icon */}
-
-        <div
-          className={`
-          flex
-          h-16
-          w-16
-          items-center
-          justify-center
-          rounded-2xl
-          ${iconBg}
-          `}
-        >
-          <Icon size={30} className={iconColor} />
         </div>
       </div>
     </div>

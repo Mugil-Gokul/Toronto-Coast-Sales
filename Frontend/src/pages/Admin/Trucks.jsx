@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  RefreshCcw,
-  Truck,
-  CircleCheckBig,
-  CircleX,
-  DollarSign,
-} from "lucide-react";
+import { RefreshCcw, Truck } from "lucide-react";
 
 import DeleteModal from "../../Components/Admin/Trucks/DeleteModal";
 
@@ -17,10 +11,17 @@ import TruckToolbar from "../../Components/Admin/Trucks/TruckToolbar";
 import TruckTable from "../../Components/Admin/Trucks/TruckTable";
 import Pagination from "../../Components/Admin/Trucks/Pagination";
 
+import StatCard from "../../Components/Admin/Dashboard/StatCard";
+
+import { CircleCheckBig, CircleX, DollarSign } from "lucide-react";
+
 const Trucks = () => {
   const [search, setSearch] = useState("");
+
   const [status, setStatus] = useState("");
+
   const [sort, setSort] = useState("newest");
+
   const [page, setPage] = useState(1);
 
   const [selectedTruck, setSelectedTruck] = useState(null);
@@ -29,24 +30,16 @@ const Trucks = () => {
 
   const [deleteLoading, setDeleteLoading] = useState(false);
 
-const {
-  trucks,
-  pagination,
-  loading,
-  error,
-  refresh,
-} = useTrucks({
-  page,
-  search,
-  status,
-  sort,
-});
+  const { trucks, pagination, loading, error, refresh } = useTrucks({
+    page,
+    search,
+    status,
+    sort,
+  });
 
-
-
-useEffect(() => {
-  setPage(1);
-}, [search, status, sort]);
+  useEffect(() => {
+    setPage(1);
+  }, [search, status, sort]);
 
   const handleDelete = (truck) => {
     setSelectedTruck(truck);
@@ -65,44 +58,82 @@ useEffect(() => {
       setDeleteOpen(false);
 
       setSelectedTruck(null);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
     } finally {
       setDeleteLoading(false);
     }
   };
 
-  // Statistics
+  const stats = {
+    totalTrucks: trucks.length,
 
-  const totalTrucks = trucks.length;
+    available: trucks.filter((t) => t.status === "available").length,
 
-  const availableTrucks = trucks.filter(
-    (truck) => truck.status === "available",
-  ).length;
+    sold: trucks.filter((t) => t.status === "sold").length,
 
-  const soldTrucks = trucks.filter((truck) => truck.status === "sold").length;
-
-  const inventoryValue = trucks.reduce(
-    (total, truck) => total + Number(truck.price || 0),
-    0,
-  );
+    inventoryValue: trucks.reduce((sum, t) => sum + Number(t.price || 0), 0),
+  };
 
   return (
-    <div className="space-y-8">
+    <div
+      className="
+      space-y-8
+      "
+    >
       {/* Header */}
 
-      <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+      <div
+        className="
+        flex
+        flex-col
+        gap-4
+        md:flex-row
+        md:items-center
+        md:justify-between
+        "
+      >
         <div>
-          <h1 className="text-4xl font-bold text-slate-800">Truck Inventory</h1>
+          <h1
+            className="
+            text-3xl
+            sm:text-4xl
+            font-bold
+            text-slate-800
+            "
+          >
+            Truck Inventory
+          </h1>
 
-          <p className="mt-2 text-slate-500">
+          <p
+            className="
+            mt-2
+            text-slate-500
+            "
+          >
             Manage all trucks from one place.
           </p>
         </div>
 
         <button
           onClick={refresh}
-          className="flex items-center justify-center gap-2 rounded-xl border bg-white px-5 py-3 font-semibold text-slate-700 shadow-sm transition hover:bg-slate-100"
+          className="
+          flex
+          items-center
+          justify-center
+          gap-2
+          rounded-xl
+          bg-white
+          px-5
+          py-3
+          font-semibold
+          text-slate-700
+          shadow-sm
+          border
+          border-slate-100
+          transition
+          hover:bg-slate-100
+          "
         >
           <RefreshCcw size={18} />
           Refresh
@@ -111,76 +142,106 @@ useEffect(() => {
 
       {/* Stats */}
 
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        <div className="rounded-2xl bg-white p-6 shadow-sm">
-          <div className="flex items-center justify-between">
-            <p className="text-slate-500">Total Trucks</p>
+      <div
+        className="
+        grid
+        gap-5
+        sm:grid-cols-2
+        xl:grid-cols-4
+        "
+      >
+        <StatCard
+          title="Total Trucks"
+          value={stats.totalTrucks}
+          icon={Truck}
+          iconBg="bg-blue-100"
+          iconColor="text-blue-600"
+          change="All inventory"
+        />
 
-            <Truck className="text-blue-600" size={24} />
-          </div>
+        <StatCard
+          title="Available"
+          value={stats.available}
+          icon={CircleCheckBig}
+          iconBg="bg-green-100"
+          iconColor="text-green-600"
+          change="Ready for sale"
+          changeColor="text-green-600"
+        />
 
-          <h2 className="mt-4 text-3xl font-bold">{totalTrucks}</h2>
-        </div>
+        <StatCard
+          title="Sold"
+          value={stats.sold}
+          icon={CircleX}
+          iconBg="bg-red-100"
+          iconColor="text-red-500"
+          change="Completed"
+          changeColor="text-red-500"
+        />
 
-        <div className="rounded-2xl bg-white p-6 shadow-sm">
-          <div className="flex items-center justify-between">
-            <p className="text-slate-500">Available</p>
-
-            <CircleCheckBig className="text-green-600" size={24} />
-          </div>
-
-          <h2 className="mt-4 text-3xl font-bold">{availableTrucks}</h2>
-        </div>
-
-        <div className="rounded-2xl bg-white p-6 shadow-sm">
-          <div className="flex items-center justify-between">
-            <p className="text-slate-500">Sold</p>
-
-            <CircleX className="text-red-500" size={24} />
-          </div>
-
-          <h2 className="mt-4 text-3xl font-bold">{soldTrucks}</h2>
-        </div>
-
-        <div className="rounded-2xl bg-white p-6 shadow-sm">
-          <div className="flex items-center justify-between">
-            <p className="text-slate-500">Inventory Value</p>
-
-            <DollarSign className="text-orange-500" size={24} />
-          </div>
-
-          <h2 className="mt-4 text-2xl font-bold text-orange-600">
-            ${inventoryValue.toLocaleString()}
-          </h2>
-        </div>
+        <StatCard
+          title="Inventory Value"
+          value={`$${stats.inventoryValue.toLocaleString()}`}
+          icon={DollarSign}
+          iconBg="bg-orange-100"
+          iconColor="text-orange-500"
+          change="Current value"
+          changeColor="text-orange-500"
+        />
       </div>
 
       {/* Toolbar */}
 
       <TruckToolbar
-  search={search}
-  setSearch={setSearch}
+        search={search}
+        setSearch={setSearch}
+        status={status}
+        setStatus={setStatus}
+        sort={sort}
+        setSort={setSort}
+      />
 
-  status={status}
-  setStatus={setStatus}
+      {/* Content */}
 
-  sort={sort}
-  setSort={setSort}
-/>
-
-      {/* Table */}
-
-      <div className="rounded-2xl bg-white p-6 shadow-sm">
+      <div
+        className="
+        rounded-2xl
+        bg-white
+        p-4
+        sm:p-6
+        shadow-sm
+        "
+      >
         {loading && (
           <div className="py-20 text-center">
-            <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-orange-500 border-t-transparent" />
+            <div
+              className="
+              mx-auto
+              mb-4
+              h-12
+              w-12
+              animate-spin
+              rounded-full
+              border-4
+              border-orange-500
+              border-t-transparent
+              "
+            />
 
             <p className="text-slate-500">Loading inventory...</p>
           </div>
         )}
 
         {error && (
-          <div className="rounded-xl border border-red-200 bg-red-50 p-5">
+          <div
+            className="
+            rounded-xl
+            border
+            border-red-200
+            bg-red-50
+            p-5
+            "
+          >
             <h3 className="font-semibold text-red-600">
               Failed to load trucks
             </h3>
@@ -201,25 +262,14 @@ useEffect(() => {
           </div>
         )}
 
-        {!loading &&
- !error &&
- trucks.length > 0 && (
-  <>
-    <TruckTable
-      trucks={trucks}
-      onDelete={handleDelete}
-    />
+        {!loading && !error && trucks.length > 0 && (
+          <>
+            <TruckTable trucks={trucks} onDelete={handleDelete} />
 
-    <Pagination
-      pagination={pagination}
-      page={page}
-      setPage={setPage}
-    />
-  </>
-)}
+            <Pagination pagination={pagination} page={page} setPage={setPage} />
+          </>
+        )}
       </div>
-
-      {/* Delete Modal */}
 
       <DeleteModal
         open={deleteOpen}
