@@ -1,5 +1,6 @@
 import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
@@ -14,6 +15,22 @@ import Login from "./Components/Login";
 
 import AdminRoutes from "./routes/AdminRoutes";
 
+
+// Scroll to top on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [pathname]);
+
+  return null;
+};
+
+
 function App() {
   const location = useLocation();
 
@@ -23,6 +40,8 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
+
       {!hideLayout && <Navbar />}
 
       <Routes>
